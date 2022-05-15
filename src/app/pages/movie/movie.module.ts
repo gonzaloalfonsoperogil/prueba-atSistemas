@@ -7,6 +7,11 @@
 import { NgModule } from '@angular/core';
 import { MovieRouter } from './movie.router';
 import { MovieListComponent } from './movie-list/movie-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MoviesRx } from './movie.rx';
+import { LoggerService } from 'src/app/@core/services/logger.service';
+import { MovieService } from './movie.service';
+import { CommonModule } from '@angular/common';
  
  @NgModule({
    declarations: [
@@ -14,11 +19,15 @@ import { MovieListComponent } from './movie-list/movie-list.component';
    ],
  
    providers: [
-       
+    MoviesRx,
+    LoggerService,
+    MovieService
    ],
  
    imports: [
-     MovieRouter
+    CommonModule,
+     MovieRouter,
+     HttpClientModule
    ]
  })
  
