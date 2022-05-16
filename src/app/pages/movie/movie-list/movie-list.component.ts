@@ -3,7 +3,7 @@
  * @author Gonzalo Alfonso
  * 
  */
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/@core/abstracts/base-component.abstract';
 import { MoviesRx } from '../movie.rx';
 import { IMovie } from './movie-list.interfaces';
@@ -32,7 +32,7 @@ export class MovieListComponent extends BaseComponent implements OnInit {
 
   override _subscribe(): void {
     this._subscriptions.push(
-      this._moviesRx.movieList.subscribe(data => {
+      this._moviesRx.movieList.subscribe((data: IMovie[]) => {
         this.movieList = data;
       })
       );

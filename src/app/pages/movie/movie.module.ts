@@ -12,10 +12,12 @@ import { MoviesRx } from './movie.rx';
 import { LoggerService } from 'src/app/@core/services/logger.service';
 import { MovieService } from './movie.service';
 import { CommonModule } from '@angular/common';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
  
  @NgModule({
    declarations: [
-     MovieListComponent
+     MovieListComponent,
+     MovieDetailComponent
    ],
  
    providers: [

@@ -4,6 +4,7 @@
  * 
  */
  import { Routes, RouterModule } from '@angular/router';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
  
  /**
@@ -16,7 +17,11 @@ import { MovieListComponent } from './movie-list/movie-list.component';
      path: '',
      component: MovieListComponent,
      pathMatch: 'full',
-   }
+   },
+   {
+    path: 'detail/:movieId',
+    component: MovieDetailComponent
+  }
  ];
  
  /**

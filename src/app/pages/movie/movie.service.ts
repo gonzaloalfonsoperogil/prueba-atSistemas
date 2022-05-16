@@ -15,7 +15,7 @@
 import { LoggerService } from 'src/app/@core/services/logger.service';
 import { map } from 'rxjs';
 import { SERVER_BASE_PATH, STANDARD_HEADERS } from 'src/app/app.constants';
-import { MOVIE_ENDPOINTS } from './movie.constants';
+import { MOVIE_SETTINGS } from './movie.constants';
 import { IMovie } from './movie-list/movie-list.interfaces';
 
  
@@ -28,10 +28,13 @@ import { IMovie } from './movie-list/movie-list.interfaces';
   */
  @Injectable()
  export class MovieService {
-     private _settings = MOVIE_ENDPOINTS;
+     private _settings = MOVIE_SETTINGS;
      private _basePath = SERVER_BASE_PATH;
-     private _getApiListEndpoint = `${this._basePath}${this._settings.movieListEndpoint}`;
-     private _getApiListHeaders = STANDARD_HEADERS;
+     private _getMovieListEndpoint = `${this._basePath}${this._settings.ENDPOINTS.movieListEndpoint}`;
+     private _getMovieDetailEndpoint = `${this._basePath}${this._settings.ENDPOINTS.movieDetailEndpoint}`;
+     
+     private _getMovieListHeaders = `${this._basePath}${this._settings.HEADERS.movieListHeaders}`;
+     private _getMovieDetailHeaders = `${this._basePath}${this._settings.HEADERS.movieDetailHeaders}`;
 
    /**
     * @constructor
@@ -53,8 +56,8 @@ import { IMovie } from './movie-list/movie-list.interfaces';
     */
    public getMovieList() {
      return this.http
-       .get(this._getApiListEndpoint, {
-         headers: new HttpHeaders(this._getApiListHeaders),
+       .get(this._getMovieListEndpoint, {
+         headers: new HttpHeaders(this._getMovieListHeaders),
          observe: 'response',
        })
        .pipe(
@@ -65,4 +68,25 @@ import { IMovie } from './movie-list/movie-list.interfaces';
          })
        );
    }
+
+   /**
+    * @public
+    * @name getMovieDetail
+    * @description Recoger el detalle de una pelicula.
+    * @return
+    */
+    public getMovieDetail(id: number) {
+        return this.http
+          .get(this._getMovieDetailEndpoint, {
+            headers: new HttpHeaders(this._getMovieDetailHeaders),
+            observe: 'response',
+          })
+          .pipe(
+            map((res: HttpResponse<IMovie[]> | HttpResponse<Object>) => {
+              this.logger.log('Exito en la llamada al servicio: Movie Detail ====>' + res);
+              let _body = res.body !== null ? res.body : null;
+              return _body;
+            })
+          );
+      }
 }

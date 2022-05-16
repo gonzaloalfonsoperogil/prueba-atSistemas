@@ -2,19 +2,18 @@ import { STANDARD_HEADERS } from "src/app/app.constants";
 
 /**
  * @const
- * @name MOVIE_ENDPOINTS
- * @export MOVIE_ENDPOINTS
+ * @name MOVIE_SETTINGS
+ * @export MOVIE_SETTINGS
  */
-export const MOVIE_ENDPOINTS = {
-    movieListEndpoint: 'movies'
-};
+export const MOVIE_SETTINGS = {
+    ENDPOINTS: {
+        movieListEndpoint: 'movies',
+        movieDetailEndpoint: 'movies/{id}'
+    },
+    HEADERS: {
+        movieListHeaders: STANDARD_HEADERS,
+        movieDetailHeaders: STANDARD_HEADERS
+    }
 
-/**
- * @const
- * @name MOVIE_HEADERS
- * @export MOVIE_HEADERS
- */
- export const MOVIE_HEADERS = {
-    movieListEndpoint: STANDARD_HEADERS
 };
 
