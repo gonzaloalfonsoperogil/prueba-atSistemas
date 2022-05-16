@@ -39,3 +39,17 @@
     font-weight: 600;
     margin-right: 8px;
 }
+
+.noImage {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    color: white;
+    span {
+       font-weight: 700;
+    font-size: 22px;
+    margin: 0 30px; 
+    }
+    
+}
